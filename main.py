@@ -1,1 +1,1 @@
-print('sparta!')
+print('Hello sparta!')
