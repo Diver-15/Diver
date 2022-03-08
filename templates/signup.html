@@ -4,28 +4,90 @@
     <meta charset="UTF-8">
     <title>다이버 :: 가입하기</title>
     <link rel="stylesheet" href="../static/signup.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        function idCheck(form) {
+            if(form.idCheckResult.value == '0') {
+                form.idCheckResult.value == '1';
+            }
+        }
+        function register_comment() {
+            let name = $('#name').val()
+            let id = $('#id').val()
+            let pwd = $('#pwd').val()
+            let checkpwd1 = $('#check_pwd1').val()
+
+            if (name == '' || id == '' || pwd == '' || checkpwd1 == '') {
+                alert('빈칸을 입력해주세요')
+                return;
+            }
+            if (checkpwd1 !== pwd) {
+                alert('비밀번호가 일치하지 않습니다.')
+                return;
+            }
+
+            if (form.idCheckResult.value == '0') {
+                alert('아이디 중복확인을 반드시 해주세요');
+                return;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/register',
+                data: {name_give: name, id_give: id, pwd_give: pwd},
+                success: function (response) {
+                    alert(response['msg'])
+                    // window.location.reload()
+                    window.location.replace("http://localhost:8000/")
+                }
+            })
+        }
+
+        function check_Id() {
+            let id = $('#id').val()
+
+            $.ajax({
+                type: "POST",
+                url: "/register/check",
+                data: {id_give: id},
+                success: function (response) {
+                    if (response['exists']) {
+                        alert('이미 존재하는 아이디입니다.')
+                    } else if (id =='') {
+                        alert('아이디를 입력해주세요.')
+                    } else {
+                        alert('사용가능한 아이디입니다.')
+                    }
+                }
+            });
+        }
+    </script>
 </head>
 <body>
-<div class="wrapper">
-    <h2>다이버(Diver) 가입하기</h2>
-    <form action="#">
-        <div class="input-box">
-            <input type="text" placeholder="이름을 입력하세요" required>
-        </div>
-        <div class="input-box">
-            <input type="text" placeholder="ID를 입력하세요" required>
-        </div>
-        <div class="input-box">
-            <input type="password" placeholder="패스워드를 입력하세요" required>
-        </div>
-        <div class="input-box">
-            <input type="password" placeholder="패스워드 확인" required>
-        </div>
-        <div class="input-box button">
-            <input type="Submit" value="가입하기">
-        </div>
-    </form>
-</div>
-
+    <div class="wrapper" id="container">
+        <h2>다이버(Diver) 가입하기</h2>
+        <form name="join" action="#">
+            <input type="hidden" name="idCheckResult" value="0">
+            <div class="input-box">
+                <input id="name" type="text" placeholder="이름을 입력하세요" required>
+            </div>
+            <div class="input-box">
+                <input id="id" type="text" placeholder="ID를 입력하세요" required>
+                <button onclick="idCheck(join); check_Id(); " class="check_btn">중복확인</button>
+            </div>
+            <div class="input-box">
+                <input id="pwd" type="password" placeholder="패스워드를 입력하세요" required>
+            </div>
+            <div class="input-box">
+                <input id="check_pwd1" type="password" placeholder="패스워드 확인" required>
+            </div>
+            <div class="input-box button">
+                <input onclick="register_comment()" type="Submit" value="가입하기">
+            </div>
+        </form>
+    </div>
 </body>
 </html>
