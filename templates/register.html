@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Webpage Title -->
+        <title>Hello, world!</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bulma CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        <link rel="stylesheet" href="../static/register.css">
+
+        <script>
+            // 간단한 회원가입 함수입니다.
+            // 아이디, 비밀번호, 닉네임을 받아 DB에 저장합니다.
+            function register() {
+                $.ajax({
+                    type: "POST",
+                    url: "/api/register",
+                    data: {
+                        id_give: $('#userid').val(),
+                        pw_give: $('#userpw').val(),
+                        name_give: $('#username').val()
+                    },
+                    success: function (response) {
+                        if (response['result'] == 'success') {
+                            alert('회원가입이 완료되었습니다.')
+                            window.location.href = '/login'
+                        } else {
+                            alert(response['msg'])
+                        }
+                    }
+                })
+            }
+
+        </script>
+    </head>
+    <body>
+       <div class="wrapper" id="container">
+    <h2>다이버(Diver) 가입하기</h2>
+    <form action="#">
+        <div class="input-box">
+            <input id="username" type="text" placeholder="이름을 입력하세요" required>
+        </div>
+        <div class="input-box">
+            <input id="userid" type="text" placeholder="ID를 입력하세요" required>
+        </div>
+        <div class="input-box">
+            <input id="userpw" type="password" placeholder="패스워드를 입력하세요" required>
+        </div>
+{#        <div class="input-box">#}
+{#            <input id="check_pwd1" type="password" placeholder="패스워드 확인" required>#}
+{#        </div>#}
+        <div class="input-box button">
+            <input onclick="register()" value="가입하기">
+        </div>
+    </form>
+</div>
+    </body>
+</html>

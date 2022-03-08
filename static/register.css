@@ -47,7 +47,7 @@ body{
 }
 form .input-box input{
     height: 100%;
-    width: 100%;
+    width: 75%;
     outline: none;
     padding: 0 15px;
     font-size: 17px;
@@ -106,14 +106,14 @@ form .text h3 a:hover{
 .check_btn {
     width: 80px;
     height: 50px;
-
     color: #fff;
+    margin: 0px 0px 0px 6px;
     letter-spacing: 1px;
     border: none;
     background: #4070f4;
     cursor: pointer;
     font-size: 15px;
-    border-radius: 20px;
+    border-radius: 6px;
 }
 
 .check_btn:hover {
