@@ -10,15 +10,54 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../static/register.css">
+    <!-- 아이콘 -->
+    <link href="https://cdn-icons-png.flaticon.com/512/2047/2047989.png" rel="shortcut icon" type="image/x-icon">
 
     <script>
+        {#등록#}
+
         function register() {
+            let username = $("#userid").val()
+            let password = $("#userpw").val()
+            let password2 = $("#userpw2").val()
+            console.log(username, password, password2)
+
+            if ($("#help-id").hasClass("is-danger")) {
+                alert("아이디를 다시 확인해주세요.")
+                return;
+            } else if (!$("#help-id").hasClass("is-success")) {
+                alert("아이디 중복확인을 해주세요.")
+                return;
+            }
+            if (password == "") {
+                $("#help-password").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#userpw").focus()
+                return;
+            } else if (!is_password(password)) {
+                $("#help-password").text("비밀번호의 형식을 확인해주세요. 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 8-20자").removeClass("is-safe").addClass("is-danger")
+                $("#userpw").focus()
+                return
+            } else {
+                $("#help-password").text("사용할 수 있는 비밀번호입니다.").removeClass("is-danger").addClass("is-success")
+            }
+            if (password2 == "") {
+                $("#help-password2").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#userpw2").focus()
+                return;
+            } else if (password2 != password) {
+                $("#help-password2").text("비밀번호가 일치하지 않습니다.").removeClass("is-safe").addClass("is-danger")
+                $("#userpw2").focus()
+                return;
+            } else {
+                $("#help-password2").text("비밀번호가 일치합니다.").removeClass("is-danger").addClass("is-success")
+            }
+
             $.ajax({
                 type: "POST",
                 url: "/api/register",
                 data: {
-                    id_give: $('#userid').val(),
-                    pw_give: $('#userpw').val(),
+                    id_give: username,
+                    pw_give: password,
                     name_give: $('#username').val()
                 },
                 success: function (response) {
@@ -32,6 +71,53 @@
             })
         }
 
+        {#중복 확인#}
+
+        function check_dup() {
+            let username = $("#userid").val()
+            console.log(username)
+            if (username == "") {
+                $("#help-id").text("아이디를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#userid").focus()
+                return;
+            }
+            if (!is_nickname(username)) {
+                $("#help-id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
+                $("#userid").focus()
+                return;
+            }
+            $("#help-id").addClass("is-loading")
+            $.ajax({
+                type: "POST",
+                url: "/sign_up/check_dup",
+                data: {
+                    username_give: username
+                },
+                success: function (response) {
+
+                    if (response["exists"]) {
+                        $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
+                        $("#userid").focus()
+                    } else {
+                        $("#help-id").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
+                    }
+                    $("#help-id").removeClass("is-loading")
+
+                }
+            });
+        }
+
+        {#정규표현식#}
+
+        function is_nickname(asValue) {
+            var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/;
+            return regExp.test(asValue);
+        }
+
+        function is_password(asValue) {
+            var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+            return regExp.test(asValue);
+        }
     </script>
 </head>
 <body>
@@ -43,14 +129,23 @@
         </div>
         <div class="input-box">
             <input id="userid" type="text" placeholder="ID를 입력하세요" required>
-            <button class="check_btn" onclick="">중복확인</button>
+            <button class="check_btn" onclick="check_dup()">중복확인</button>
+        </div>
+        <div class="text-idcheck">
+            <h5 id="help-id">영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이</h5>
         </div>
         <div class="input-box">
             <input id="userpw" type="password" placeholder="패스워드를 입력하세요" required>
         </div>
-        {#        <div class="input-box">#}
-        {#            <input id="check_pwd1" type="password" placeholder="패스워드 확인" required>#}
-        {#        </div>#}
+        <div class="text-pwdcheck">
+            <h5 id="help-password">영문,숫자 필수 포함, 특수문자 사용 , 8자 이상</h5>
+        </div>
+        <div class="input-box">
+            <input id="userpw2" type="password" placeholder="패스워드 확인" required>
+        </div>
+        <div class="text-pwdcheck">
+            <h5 id="help-password2">패스워드를 한번 더 입력해주세요</h5>
+        </div>
         <div class="input-box button">
             <input onclick="register()" value="가입하기">
         </div>

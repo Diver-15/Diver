@@ -56,7 +56,12 @@ def api_register():
     db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'name': name_receive})
 
     return jsonify({'result': 'success'})
-
+# [회원가입 아이디 중복확인 API]
+@app.route('/sign_up/check_dup', methods=['POST'])
+def check_dup():
+    username_receive = request.form['username_give']
+    exists = bool(db.user.find_one({"id": username_receive}))
+    return jsonify({'result': 'success', 'exists': exists})
 
 # [로그인 API]
 @app.route('/api/login', methods=['POST'])
