@@ -76,6 +76,7 @@ form .input-box.button input{
     background: #4070f4;
     cursor: pointer;
     font-size: 25px;
+    text-align: center;
 }
 
 .input-box.button input:hover{

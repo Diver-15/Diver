@@ -80,6 +80,7 @@ form .input-box.button input{
     background: #4070f4;
     cursor: pointer;
     font-size: 25px;
+    text-align: center;
 }
 
 .input-box.button input:hover{
@@ -105,17 +106,17 @@ form .text h3 a:hover{
 
 .check_btn {
     width: 80px;
-    height: 50px;
+    height: 40px;
     color: #fff;
     margin: 0px 0px 0px 6px;
     letter-spacing: 1px;
     border: none;
     background: #4070f4;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 14px;
     border-radius: 6px;
 }
 
 .check_btn:hover {
-    background-color: red;
+    background-color: #0e4bf1;
 }
