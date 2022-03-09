@@ -39,6 +39,10 @@ def login():
 def register():
     return render_template('register.html')
 
+@app.route('/shopping')
+def shoppingmall():
+    return render_template('shop.html')
+
 
 #################################
 ##  로그인을 위한 API            ##
@@ -101,6 +105,16 @@ def api_valid():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
+# [쇼핑몰 관련 API]
+@app.route("/clothes_male", methods=["GET"])
+def male_get():
+    clothe_list = list(db.shoppingmall.find({'gender':'남'}, {'_id': False},))
+    return jsonify({'clothes': clothe_list})
+
+@app.route("/clothes_female", methods=["GET"])
+def female_get():
+    clothe_list = list(db.shoppingmall.find({'gender':'여'}, {'_id': False}))
+    return jsonify({'clothes': clothe_list})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=8000, debug=True)
