@@ -3,7 +3,7 @@
 <head>
 
     <!-- Webpage Title -->
-    <title>DIVER</title>
+    <title>다이버 :: 쇼핑몰 추천 사이트</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -26,157 +26,11 @@
     <script src="https://kit.fontawesome.com/1e07df1922.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    {#    아이콘#}
+    <link href="https://cdn-icons-png.flaticon.com/512/2047/2047989.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="../static/shop.css">
 
-    <style>
-        * {
-            font-family: 'Jua', sans-serif;
-        }
-
-
-        {#id=cards-box에서 적용되므로 지우면 안됩니다.#}
-        .card {
-            float: left;
-            margin-right: 15px;
-            margin-bottom: 25px;
-        }
-
-        .cards {
-            margin: auto;
-            display: block;
-            width: 1000px;
-        }
-
-        .nav {
-            display: block;
-            margin: 0 auto 10px;
-            width: 900px;
-
-        }
-
-        .nav li:hover {
-            color: black;
-
-        }
-
-        .mypage {
-            float: right;
-            padding: 20px;
-            font-weight: bold;
-            font-size: 25px;
-            color: black;
-            margin-right: 30px;
-        }
-
-        .jb-wrap {
-            position: relative;
-            width: 100%;
-            margin-bottom: 5px;
-        }
-
-        .pic {
-            height: 500px;
-            margin-top: 0px;
-        }
-
-        .jb-wrap img {
-            width: 100%;
-        }
-
-        .jb-text {
-            width: 100%;
-            padding: 5px 10px;
-            text-align: center;
-            position: absolute;
-            top: 40%;
-            left: 0%;
-            transform: translate(0%, 0%);
-            color: white;
-            font-size: 60px;
-        }
-
-        .lead {
-            color: white;
-            font-size: 36px;
-        }
-
-        .body-top {
-            height: 120px;
-        }
-
-        .level-item is-sparta {
-            padding: 150px;
-        }
-
-        .nav-item {
-            padding: 15px;
-            font-size: 20px;
-        }
-
-        .nav-link {
-            text-align: center;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            flex-direction: row;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            list-style-type: none;
-        }
-
-        a:link {
-            color: black;
-        }
-
-        a:visited {
-            color: black;
-        }
-
-        .category_btn2 {
-            display: flex;
-            justify-content: center;
-            flex-direction: row;
-            align-items: center;
-
-            margin: auto;
-        }
-        
-        #mycards {
-            background-color: green;
-            height: 1000px;
-            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWEDyCtLe-NzDXb5kFYRID1Wq5Qq7jYvqgeg&usqp=CAU");
-            background-size: cover;
-            
-        }
-
-        #tabs {
-            margin-bottom: 0px;
-        }
-    </style>
     <script>
-        // $(document).ready(function () {
-        //     listing();
-        // });
-
-        //이건 입력한 값을 가져와서 저장하는 거니 미리 다 저장하시는 거고 필요없으시면 없애셔도됩니다.
-        // function posting() {
-        //     let url = $('#url').val()
-        //     let gender = $('#gender').val()
-        //     let comment = $('#comment').val()
-        //
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: '/clothes',
-        //         data: {url_give: url, gender_give: gender, comment_give: comment},
-        //         success: function (response) {
-        //             alert(response['msg'])
-        //             window.location.reload()
-        //         }
-        //     });
-        // }
-
         //남자일 경우에
         function gender_male() {
             $('#cards-box').empty();
@@ -191,13 +45,13 @@
 
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
+                        let temp_html = `<div class="card">
                                             <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
                                             <div class="card-body">
                                                 <div class="body-top">
-                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
+                                                    <h5 class="card-title" style="font-color: black"> <a href="${url}">${name}</a></h5>
                                                 </div>
                                             </div>
                                         </div>`
@@ -221,7 +75,7 @@
                     for (let i = 0; i < rows.length; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
                                             <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
@@ -252,7 +106,7 @@
                     for (let i = 0; i < 6; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
                                             <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
@@ -281,7 +135,7 @@
                     for (let i = 6; i < 12; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
                                             <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
@@ -310,7 +164,7 @@
                     for (let i = 12; i < 18; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
@@ -340,7 +194,7 @@
                     for (let i = 18; i < 24; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
@@ -370,7 +224,7 @@
                     for (let i = 24; i < 30; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
                                             <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
@@ -399,7 +253,7 @@
                     for (let i = 30; i < 36; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
@@ -429,7 +283,7 @@
                     for (let i = 0; i < 6; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
@@ -459,7 +313,7 @@
                     for (let i = 6; i < 12; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
                                             <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
@@ -488,7 +342,7 @@
                     for (let i = 12; i < 18; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
                                             <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
@@ -517,7 +371,7 @@
                     for (let i = 18; i < 24; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
                                             <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
@@ -546,7 +400,7 @@
                     for (let i = 24; i < 30; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
@@ -576,7 +430,7 @@
                     for (let i = 30; i < 36; i++) {
                         let name = rows[i]['name']
                         let url = rows[i]['url']
-                        let img = rows[i]['img']
+                        let img = rows[i]['image']
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
                                             <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
@@ -592,197 +446,100 @@
                 }
             })
         }
+
+        // 로그아웃은 내가 가지고 있는 토큰만 쿠키에서 없애면 됩니다.
+        function logout() {
+            $.removeCookie('mytoken');
+            alert('로그아웃!')
+            window.location.href = '/login'
+        }
     </script>
 
 </head>
 <body>
-
-<div class="mytitle">
-    <div class="jb-wrap">
-        <img class="pic"
-             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdXx6gXsTpqSGVy7Sp_ouavHNvzDHYDe8zig&usqp=CAU"
-             alt="">
-        <div class="jb-text">
-            <p>DIVER
-            </p>
-            <p class="lead">다 사 입어~ 다이버!</p>
+<!--navi var -->
+<header>
+    {#    <img class = "logo" src="../static/img/logo1.png" alt="logo">#}
+    <nav class="nav">
+        <ul class="nav-links">
+            <li>DIVER</li>
+        </ul>
+    </nav>
+    <ul class="nav-links">
+        <li>{{ name }}님</li>
+    </ul>
+    <a class="cta" onclick="logout()">
+        <button>Logout</button>
+    </a>
+</header>
+<!-- Animation -->
+<div class="slider-frame">
+    <div class="slider-images">
+        <div class="img-container">
+            <img src="../static/img/1.png">
+        </div>
+        <div class="img-container">
+            <img src="../static/img/6.png">
+        </div>
+        <div class="img-container">
+            <img src="../static/img/5.png">
+        </div>
+        <div class="img-container">
+            <img src="../static/img/4.png">
+        </div>
+        <div class="img-container">
+            <img src="../static/img/2.png">
         </div>
     </div>
-
-    <div class="tabs is-boxed" id="tabs">
-
-        <ul>
-            <li class="is-active">
-                <a>
-                    <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
-                    <span onclick="gender_male()">Male total</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-                    <span onclick="category_male1()">빅사이즈</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
-                    <span onclick="category_male2()">스트릿</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="fas fa-home" aria-hidden="true"></i></span>
-                    <span onclick="category_male3()">트랜드/캐쥬얼</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-                    <span onclick="category_male4()">댄디</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="fas fa-puzzle-piece" aria-hidden="true"></i></span>
-                    <span onclick="category_male5()">클래식/수트</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="fas fa-thumbs-up" aria-hidden="true"></i></span>
-                    <span onclick="category_male6()">빈티지</span>
-                </a>
-            </li>
-        </ul>
-        <ul>
-            <li class="is-active">
-                <a>
-                    <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
-                    <span onclick="gender_female()">Female total</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-                    <span onclick="category_female1()">러블리</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
-                    <span onclick="category_female2()">섹시</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="fas fa-home" aria-hidden="true"></i></span>
-                    <span onclick="category_female3()">모던시크</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-                    <span onclick="category_female4()">페미닌</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="fas fa-puzzle-piece" aria-hidden="true"></i></span>
-                    <span onclick="category_female5()">언더웨어</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <span class="icon is-small"><i class="fas fa-thumbs-up" aria-hidden="true"></i></span>
-                    <span onclick="category_female6()">피트니스</span>
-                </a>
-            </li>
-        </ul>
+</div>
+<!-- Selector -->
+<div class="dropdownAll">
+    <div class="dropdown">
+        <div class="dropdown-select">
+            <span class="select">Gender</span>
+            <i class="fa fa-caret-down icon"></i>
+        </div>
+        <div class="dropdown-list">
+            <div class="dropdown-list-item" onclick="gender_male()">Male</div>
+            <div class="dropdown-list-item" onclick="gender_female()">Female</div>
+        </div>
     </div>
-    <div class="card_wrap" id="mycards">
-        <div class="cards" id="cards-box">
-            나타나나
+    <div class="dropdown2">
+        <div class="dropdown-select2">
+            <span class="select">Male Style</span>
+            <i class="fa fa-caret-down icon"></i>
+        </div>
+        <div class="dropdown-list2">
+            <div class="dropdown-list-item2" onclick="category_male1()">bigSize</div>
+            <div class="dropdown-list-item2" onclick="category_male2()">street</div>
+            <div class="dropdown-list-item2" onclick="category_male3()">trendy/casual</div>
+            <div class="dropdown-list-item2" onclick="category_male4()">dandy</div>
+            <div class="dropdown-list-item2" onclick="category_male5()">classic suit</div>
+            <div class="dropdown-list-item2" onclick="category_male6()">vintage</div>
+        </div>
+    </div>
+    <div class="dropdown3">
+        <div class="dropdown-select3">
+            <span class="select">Female Style</span>
+            <i class="fa fa-caret-down icon"></i>
+        </div>
+        <div class="dropdown-list3">
+            <div class="dropdown-list-item3" onclick="category_female1()">lovely</div>
+            <div class="dropdown-list-item3" onclick="category_female2()">sexy</div>
+            <div class="dropdown-list-item3" onclick="category_female3()">modern chic</div>
+            <div class="dropdown-list-item3" onclick="category_female4()">feminine</div>
+            <div class="dropdown-list-item3" onclick="category_female5()">underwear</div>
+            <div class="dropdown-list-item3" onclick="category_female6()">fitness</div>
         </div>
     </div>
 </div>
 
-
-
-
-{#    <div class="category_btn">#}
-{#        <nav class="navbar is-transparent">#}
-{#            <div class="category_btn2">#}
-{#                <div id="navbarExample1" class="navbar-menu">#}
-{#                    <div class="navbar-start">#}
-{#                        <div class="navbar-item has-dropdown is-hoverable">#}
-{#                            <a class="navbar-link" href="#">#}
-{#                                Male#}
-{#                            </a>#}
-{#                            <div class="navbar-dropdown is-boxed">#}
-{#                                <a onclick="gender_male()" class="navbar-item" href="#">#}
-{#                                    전체#}
-{#                                </a>#}
-{#                                <a onclick="category_male1()" class="navbar-item" href="#">#}
-{#                                    빅사이즈#}
-{#                                </a>#}
-{#                                <a onclick="category_male2()" class="navbar-item" href="#">#}
-{#                                    스트릿#}
-{#                                </a>#}
-{#                                <a onclick="category_male3()" class="navbar-item" href="#">#}
-{#                                    트랜드/캐주얼#}
-{#                                </a>#}
-{#                                <a onclick="category_male4()" class="navbar-item" href="#">#}
-{#                                    댄디#}
-{#                                </a>#}
-{#                                <a onclick="category_male5()" class="navbar-item" href="#">#}
-{#                                    클래식/수트#}
-{#                                </a>#}
-{#                                <a onclick="category_male6()" class="navbar-item" href="#">#}
-{#                                    빈티지#}
-{#                                </a>#}
-{##}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div id="navbarExample2" class="navbar-menu">#}
-{#                    <div class="navbar-start">#}
-{#                        <div class="navbar-item has-dropdown is-hoverable">#}
-{#                            <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">#}
-{#                                Female#}
-{#                            </a>#}
-{#                            <div class="navbar-dropdown is-boxed">#}
-{#                                <a onclick="gender_female()" class="navbar-item" href="#">#}
-{#                                    전체#}
-{#                                </a>#}
-{#                                <a onclick="category_female1()" class="navbar-item" href="#">#}
-{#                                    러블리#}
-{#                                </a>#}
-{#                                <a onclick="category_female2()" class="navbar-item" href="#">#}
-{#                                    섹시#}
-{#                                </a>#}
-{#                                <a onclick="category_female3()" class="navbar-item" href="#">#}
-{#                                    모던시크#}
-{#                                </a>#}
-{#                                <a onclick="category_female4()" class="navbar-item" href="#">#}
-{#                                    페미닌#}
-{#                                </a>#}
-{#                                <a onclick="category_female5()" class="navbar-item" href="#">#}
-{#                                    언더웨어#}
-{#                                </a>#}
-{#                                <a onclick="category_female6()" class="navbar-item" href="#">#}
-{#                                    피트니스#}
-{#                                </a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </nav>#}
-{#    </div>#}
-
-
+<div class="mytitle">
+    <div class="card_wrap" id="mycards">
+        <div class="cards" id="cards-box">
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
