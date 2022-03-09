@@ -30,26 +30,26 @@
                 return;
             }
             if (password == "") {
-                $("#help-password").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#help-password").text("비밀번호를 입력해주세요.").css("color","red").removeClass("is-safe").addClass("is-danger")
                 $("#userpw").focus()
                 return;
             } else if (!is_password(password)) {
-                $("#help-password").text("비밀번호의 형식을 확인해주세요. 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 8-20자").removeClass("is-safe").addClass("is-danger")
+                $("#help-password").text("비밀번호의 형식을 확인해주세요. 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 8-20자").css("color","red").removeClass("is-safe").addClass("is-danger")
                 $("#userpw").focus()
                 return
             } else {
-                $("#help-password").text("사용할 수 있는 비밀번호입니다.").removeClass("is-danger").addClass("is-success")
+                $("#help-password").text("사용할 수 있는 비밀번호입니다.").css("color","blue").removeClass("is-danger").addClass("is-success")
             }
             if (password2 == "") {
-                $("#help-password2").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#help-password2").text("비밀번호를 입력해주세요.").css("color","red").removeClass("is-safe").addClass("is-danger")
                 $("#userpw2").focus()
                 return;
             } else if (password2 != password) {
-                $("#help-password2").text("비밀번호가 일치하지 않습니다.").removeClass("is-safe").addClass("is-danger")
+                $("#help-password2").text("비밀번호가 일치하지 않습니다.").css("color","red").removeClass("is-safe").addClass("is-danger")
                 $("#userpw2").focus()
                 return;
             } else {
-                $("#help-password2").text("비밀번호가 일치합니다.").removeClass("is-danger").addClass("is-success")
+                $("#help-password2").text("비밀번호가 일치합니다.").css("color","blue").removeClass("is-danger").addClass("is-success")
             }
 
             $.ajax({
@@ -77,12 +77,12 @@
             let username = $("#userid").val()
             console.log(username)
             if (username == "") {
-                $("#help-id").text("아이디를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#help-id").text("아이디를 입력해주세요.").css("color","red").removeClass("is-safe").addClass("is-danger")
                 $("#userid").focus()
                 return;
             }
             if (!is_nickname(username)) {
-                $("#help-id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
+                $("#help-id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").css("color","red").removeClass("is-safe").addClass("is-danger")
                 $("#userid").focus()
                 return;
             }
@@ -96,10 +96,10 @@
                 success: function (response) {
 
                     if (response["exists"]) {
-                        $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
+                        $("#help-id").text("이미 존재하는 아이디입니다.").css("color","red").removeClass("is-safe").addClass("is-danger")
                         $("#userid").focus()
                     } else {
-                        $("#help-id").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
+                        $("#help-id").text("사용할 수 있는 아이디입니다.").css("color","blue").removeClass("is-danger").addClass("is-success")
                     }
                     $("#help-id").removeClass("is-loading")
 
