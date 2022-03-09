@@ -31,6 +31,43 @@
     <link rel="stylesheet" href="../static/shop.css">
 
     <script>
+        function toggle_like(cloth_id, type) {
+            console.log(cloth_id, type)
+            let $a_like = $(`#${cloth_id} a[aria-label='heart']`)
+            let $i_like = $a_like.find("i")
+            if ($i_like.hasClass("fa-heart")) {
+                $.ajax({
+                    type: "POST",
+                    url: "/update_like",
+                    data: {
+                        post_id_give: cloth_id,
+                        type_give: type,
+                        action_give: "unlike"
+                    },
+                    success: function (response) {
+                        console.log("unlike")
+                        $i_like.addClass("fa-heart-o").removeClass("fa-heart")
+                        $a_like.find("span.like-num").text(response["count"])
+                    }
+                })
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/update_like",
+                    data: {
+                        post_id_give: cloth_id,
+                        type_give: type,
+                        action_give: "like"
+                    },
+                    success: function (response) {
+                        console.log("like")
+                        $i_like.addClass("fa-heart").removeClass("fa-heart-o")
+                        $a_like.find("span.like-num").text(response["count"])
+                    }
+                })
+
+            }
+        }
         //남자일 경우에
         function gender_male() {
             $('#cards-box').empty();
@@ -53,6 +90,7 @@
                                                 <div class="body-top">
                                                     <h5 class="card-title" style="font-color: black"> <a href="${url}">${name}</a></h5>
                                                 </div>
+
                                             </div>
                                         </div>`
 
@@ -73,15 +111,22 @@
                     let rows = response['clothes']
 
                     for (let i = 0; i < rows.length; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
+
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
                         let temp_html = `<div class="card" style="width: 300px; height:300px;">
                                             <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
                                             <div class="card-body">
                                                 <div class="body-top">
                                                     <h5 class="card-title"> <a href="${url}">${name}</a></h5>
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
                                                 </div>
                                             </div>
                                         </div>`
