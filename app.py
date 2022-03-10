@@ -115,7 +115,14 @@ def api_valid():
 # [쇼핑몰 관련 API]
 @app.route("/clothes_male", methods=["GET"])
 def male_get():
-    clothe_list = list(db.shoppingmall.find({'gender': '남'}, {'_id': False}, ))
+    token_reveive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_reveive, SECRET_KEY, algorithms=['HS256'])
+
+    clothe_list = list(db.shoppingmall.find({'gender': '남'}))
+    for cloth in clothe_list:
+        cloth["_id"] = str(cloth["_id"])
+        cloth["count_heart"] = db.likes.count_documents({"post_id": cloth["_id"], "type": "heart"})
+        cloth["heart_by_me"] = bool(db.likes.find_one({"post_id": cloth["_id"], "type": "heart", "username": payload['id']}))
     return jsonify({'clothes': clothe_list})
 
 
@@ -128,7 +135,7 @@ def female_get():
     for cloth in clothe_list:
         cloth["_id"] = str(cloth["_id"])
         cloth["count_heart"] = db.likes.count_documents({"post_id": cloth["_id"], "type": "heart"})
-        cloth["heart_by_me"] = bool(db.likes.find_one({"post_id": cloth["_id"], "type": "heart", "id": payload['id']}))
+        cloth["heart_by_me"] = bool(db.likes.find_one({"post_id": cloth["_id"], "type": "heart", "username": payload['id']}))
     return jsonify({'clothes': clothe_list})
 
 

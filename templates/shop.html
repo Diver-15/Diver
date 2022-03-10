@@ -70,7 +70,7 @@
         }
         //남자일 경우에
         function gender_male() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_male',
@@ -79,22 +79,24 @@
                     let rows = response['clothes']
 
                     for (let i = 0; i < rows.length; i++) {
-
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
-                        let temp_html = `<div class="card">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
-                                                    <h5 class="card-title" style="font-color: black"> <a href="${url}">${name}</a></h5>
-                                                </div>
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                                            </div>
-                                        </div>`
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
 
-                        $('#cards-box').append(temp_html)
+                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
+
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
@@ -102,7 +104,7 @@
 
         //여자일 경우에 '여성' 버튼 클릭시 함수실행
         function gender_female() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_female',
@@ -118,20 +120,17 @@
 
                         let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
                                                     <h5 class="card-title"> <a href="${url}">${name}</a></h5>
                                                     <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
                                                             <span class="icon is-small"><i class="fa ${class_heart}"
                                                                                            aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
                                                         </a>
-                                                </div>
-                                            </div>
-                                        </div>`
+                                         </div> `
 
-                        $('#cards-box').append(temp_html)
+                         $('#mycards').append(temp_html)
 
                     }
                 }
@@ -140,7 +139,7 @@
 
         //각 버튼마다 함수실행...너무 비효율적인 방법인것같지만..조금더 조사..
         function category_male1() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_male',
@@ -149,27 +148,31 @@
                     let rows = response['clothes']
 
                     for (let i = 0; i < 6; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
-                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        $('#cards-box').append(temp_html)
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
+                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
+
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
         }
 
         function category_male2() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_male',
@@ -178,27 +181,31 @@
                     let rows = response['clothes']
 
                     for (let i = 6; i < 12; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
-                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        $('#cards-box').append(temp_html)
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
+                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
+
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
         }
 
         function category_male3() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_male',
@@ -207,28 +214,31 @@
                     let rows = response['clothes']
 
                     for (let i = 12; i < 18; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
                                                     <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
 
-                        $('#cards-box').append(temp_html)
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
         }
 
         function category_male4() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_male',
@@ -237,28 +247,31 @@
                     let rows = response['clothes']
 
                     for (let i = 18; i < 24; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
                                                     <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
 
-                        $('#cards-box').append(temp_html)
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
         }
 
         function category_male5() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_male',
@@ -267,27 +280,31 @@
                     let rows = response['clothes']
 
                     for (let i = 24; i < 30; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
-                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        $('#cards-box').append(temp_html)
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
+                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
+
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
         }
 
         function category_male6() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_male',
@@ -296,28 +313,31 @@
                     let rows = response['clothes']
 
                     for (let i = 30; i < 36; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
                                                     <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
 
-                        $('#cards-box').append(temp_html)
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
         }
 
         function category_female1() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_female',
@@ -326,28 +346,31 @@
                     let rows = response['clothes']
 
                     for (let i = 0; i < 6; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
                                                     <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
 
-                        $('#cards-box').append(temp_html)
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
         }
 
         function category_female2() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_female',
@@ -356,27 +379,31 @@
                     let rows = response['clothes']
 
                     for (let i = 6; i < 12; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
-                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        $('#cards-box').append(temp_html)
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
+                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
+
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
         }
 
         function category_female3() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_female',
@@ -385,27 +412,31 @@
                     let rows = response['clothes']
 
                     for (let i = 12; i < 18; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
-                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        $('#cards-box').append(temp_html)
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
+                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
+
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
         }
 
         function category_female4() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_female',
@@ -414,27 +445,31 @@
                     let rows = response['clothes']
 
                     for (let i = 18; i < 24; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
-                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        $('#cards-box').append(temp_html)
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
+                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
+
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
         }
 
         function category_female5() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_female',
@@ -443,28 +478,31 @@
                     let rows = response['clothes']
 
                     for (let i = 24; i < 30; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
                                                     <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
 
-                        $('#cards-box').append(temp_html)
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
         }
 
         function category_female6() {
-            $('#cards-box').empty();
+            $('#mycards').empty();
             $.ajax({
                 type: 'GET',
                 url: '/clothes_female',
@@ -473,20 +511,24 @@
                     let rows = response['clothes']
 
                     for (let i = 30; i < 36; i++) {
+                        let cloth = rows[i]
                         let name = rows[i]['name']
                         let url = rows[i]['url']
                         let img = rows[i]['image']
 
-                        let temp_html = `<div class="card" style="width: 300px; height:300px;">
-                                            <img class="card-img-top" src="${img}" style="width:300px; height:200px;" alt="shoppingmall">
-                                            <div class="card-body">
-                                                <div class="body-top">
-                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>`
+                        let class_heart = cloth['heart_by_me'] ? "fa-heart": "fa-heart-o"
 
-                        $('#cards-box').append(temp_html)
+                        let temp_html = `<div class="card" id="${cloth['_id']}">
+                                            <a href="${url}"><img class="card-img" src="${img}" style="width: 230px;height: 230px;" alt="shoppingmall"></a>
+
+                                                    <h5 class="card-title"> <a href="${url}">${name}</a></h5>
+                                                    <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${cloth['_id']}', 'heart')">
+                                                            <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${cloth["count_heart"]}</span>
+                                                        </a>
+                                         </div> `
+
+                         $('#mycards').append(temp_html)
                     }
                 }
             })
@@ -504,7 +546,6 @@
 <body>
 <!--navi var -->
 <header>
-    {#    <img class = "logo" src="../static/img/logo1.png" alt="logo">#}
     <nav class="nav">
         <ul class="nav-links">
             <li>DIVER</li>
@@ -521,7 +562,7 @@
 <div class="slider-frame">
     <div class="slider-images">
         <div class="img-container">
-            <img src="../static/img/1.png">
+            <img src="../static/img/7.png">
         </div>
         <div class="img-container">
             <img src="../static/img/6.png">
@@ -534,6 +575,9 @@
         </div>
         <div class="img-container">
             <img src="../static/img/2.png">
+        </div>
+        <div class="img-container">
+            <img src="../static/img/7.png">
         </div>
     </div>
 </div>
@@ -581,8 +625,10 @@
 
 <div class="mytitle">
     <div class="card_wrap" id="mycards">
-        <div class="cards" id="cards-box">
-        </div>
+{#        <section class="container" id="cards-box">#}
+{##}
+{##}
+{#        </section>#}
     </div>
 </div>
 
