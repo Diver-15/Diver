@@ -4,7 +4,9 @@
 
     <!-- Webpage Title -->
     <title>다이버 :: 로그인하기</title>
-
+    <meta property="og:title" content="다이버(DIVER) 쇼핑몰을 한번에!"/>
+    <meta property="og:description" content="오늘 뭐입지? 다 입을까? 그래 다이버!"/>
+    <meta property="og:image" content="../static/img/title.png"/>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,12 +17,13 @@
 
     <link rel="stylesheet" href="../static/login.css">
     <!-- 아이콘 -->
-    <link href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzGST9lgZrFeTqxNL_1Ps5yLuBhuVcxah3pPUPfBxAU7z_bu03YECcwSuYqzOq_INl4Go&usqp=CAU" rel="shortcut icon" type="image/x-icon">
+    <link href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzGST9lgZrFeTqxNL_1Ps5yLuBhuVcxah3pPUPfBxAU7z_bu03YECcwSuYqzOq_INl4Go&usqp=CAU"
+          rel="shortcut icon" type="image/x-icon">
 
     <script>
-{#        {% if msg %}#}
-{#            alert("{{ msg }}")#}
-{#        {% endif %}#}
+        {#        {% if msg %}#}
+        {#            alert("{{ msg }}")#}
+        {#        {% endif %}#}
 
         function login() {
             $.ajax({
