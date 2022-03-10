@@ -67,9 +67,13 @@ header {
     color: black;
 }
 
+.cta li:hover {
+    color: white;
+}
+
 button {
     padding: 9px 25px;
-    background-color: black;
+    background-color: #e65ae6;
     color: white;
     border: none;
     border-radius: 50px;

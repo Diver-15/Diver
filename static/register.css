@@ -5,13 +5,23 @@
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
 }
-
+:root {
+    /*--primary: #8a57e9;*/
+    --primary: #DDA0DD;
+    /*--secondary: #4c75e6;*/
+    --secondary: white;
+}
 body{
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #4070f4;
+    /*background: #4070f4;*/
+    background-image: linear-gradient(
+            to right bottom,
+            var(--primary),
+            var(--secondary)
+    );
 }
 .wrapper{
     position: relative;
@@ -36,7 +46,7 @@ body{
     height: 3px;
     width: 28px;
     border-radius: 12px;
-    background: #4070f4;
+    background:#DA70D6;
 }
 .wrapper form{
     margin-top: 25px;
@@ -61,7 +71,7 @@ form .input-box input{
 
 .input-box input:focus,
 .input-box input:valid{
-    border-color: #4070f4;
+    border-color: #E47AE0;
 }
 form .policy{
     display: flex;
@@ -77,27 +87,15 @@ form .input-box.button input{
     color: #fff;
     letter-spacing: 1px;
     border: none;
-    background: #4070f4;
+    background:#DA70D6;
     cursor: pointer;
     font-size: 25px;
     text-align: center;
 }
 
 .input-box.button input:hover{
-    background: #0e4bf1;
-}
-
-form .text h3{
-    color: #333;
-    width: 100%;
-    text-align: center;
-}
-form .text h3 a{
-    color: #4070f4;
-    text-decoration: underline;
-}
-form .text h3 a:hover{
-    text-decoration: underline;
+    /*background: #0e4bf1;*/
+    background: #be32be;
 }
 
 #id {
@@ -111,12 +109,21 @@ form .text h3 a:hover{
     margin: 0px 0px 0px 6px;
     letter-spacing: 1px;
     border: none;
-    background: #4070f4;
+    /*background: #4070f4;*/
+    background:#DA70D6;
     cursor: pointer;
     font-size: 14px;
     border-radius: 6px;
 }
 
 .check_btn:hover {
-    background-color: #0e4bf1;
+    /*background-color: #0e4bf1;*/
+    background: #be32be;
+}
+
+.text-idcheck {
+    font-size: 14px;
+}
+.text-pwdcheck {
+    font-size: 14px;
 }
