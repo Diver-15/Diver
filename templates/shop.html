@@ -3,8 +3,10 @@
 <head>
 
     <!-- Webpage Title -->
-    <title>다이버 :: 쇼핑몰 추천 사이트</title>
-
+    <title>다이버(DIVER) :: 쇼핑몰 추천 사이트</title>
+        <meta property="og:title" content="다이버(DIVER) 쇼핑몰을 한번에!"/>
+        <meta property="og:description" content="mini project for Web Plus"/>
+{#        <meta property="og:image" content="{{ url_for('static/img', filename='ogimg.png') }}"/>#}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -552,7 +554,7 @@
         </ul>
     </nav>
     <ul class="nav-links">
-        <li>{{ name }}님</li>
+        <li class="nav-name">Hello! {{ name }}</li>
         <a class="cta" onclick="logout()">
             <button>Logout</button>
         </a>
@@ -625,10 +627,7 @@
 
 <div class="mytitle">
     <div class="card_wrap" id="mycards">
-{#        <section class="container" id="cards-box">#}
-{##}
-{##}
-{#        </section>#}
+
     </div>
 </div>
 

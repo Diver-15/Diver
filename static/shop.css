@@ -4,13 +4,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /*font-family: 'Poppins',sans-serif;*/
     font-family: "Montserrat", sans-serif;
 }
 
 :root {
-    --primary: #8a57e9;
-    --secondary: #4c75e6;
+    /*--primary: #8a57e9;*/
+    --primary: #DDA0DD;
+    /*--secondary: #4c75e6;*/
+    --secondary: #E6E6FA;
 }
 
 body {
@@ -22,16 +23,20 @@ body {
 /*navi var*/
 .nav li, a {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 18px;
     color: black;
     text-decoration: none;
+}
+.nav-name {
+    font-size: 16px;
+    font-weight: bolder;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
+    padding: 11px 8%;
     background-image: linear-gradient(
             to right bottom,
             var(--primary),
@@ -149,7 +154,12 @@ button:hover {
 .dropdown-list {
     width: 15rem;
     border-radius: 4px;
-    background-color: white;
+    /*background-color: white;*/
+    background-image: linear-gradient(
+            to right bottom,
+            var(--primary),
+            var(--secondary)
+    );
     position: absolute;
     top: 110%;
     left: 0;
@@ -163,7 +173,12 @@ button:hover {
 .dropdown-list2 {
     width: 15rem;
     border-radius: 4px;
-    background-color: white;
+    /*background-color: white;*/
+    background-image: linear-gradient(
+            to right bottom,
+            var(--primary),
+            var(--secondary)
+    );
     position: absolute;
     top: 110%;
     left: 0;
@@ -177,7 +192,12 @@ button:hover {
 .dropdown-list3 {
     width: 15rem;
     border-radius: 4px;
-    background-color: white;
+    /*background-color: white;*/
+    background-image: linear-gradient(
+            to right bottom,
+            var(--primary),
+            var(--secondary)
+    );
     position: absolute;
     top: 110%;
     left: 0;
@@ -195,6 +215,7 @@ button:hover {
 
 .dropdown-list-item:hover {
     cursor: pointer;
+    color: white;
 }
 
 .dropdown-list-item2 {
@@ -204,6 +225,7 @@ button:hover {
 
 .dropdown-list-item2:hover {
     cursor: pointer;
+    color: white;
 }
 
 .dropdown-list-item3 {
@@ -213,6 +235,7 @@ button:hover {
 
 .dropdown-list-item3:hover {
     cursor: pointer;
+    color: white;
 }
 
 /*slide animation*/
@@ -241,13 +264,13 @@ button:hover {
         right: 3200px;
     }
     40% {
-        right: 3800px;
-    }
-    50% {
         right: 4200px;
     }
+    50% {
+        right: 4800px;
+    }
     60% {
-        right: 3800px;
+        right: 4200px;
     }
     70% {
         right: 3200px;
@@ -308,7 +331,15 @@ button:hover {
     border-radius: 15px 15px 0 0;
 }
 
+.card-title{
+    color: black;
+    text-align: center;
+}
 
+/* HEART RED */
+.is-sparta {
+    color: #e8344e !important;
+}
 /*CARD*/
 
 /*.card {*/
@@ -317,9 +348,7 @@ button:hover {
 /*    margin-bottom: 25px;*/
 /*    font-color: black;*/
 /*}*/
-/*.card-title{*/
-/*    color: black;*/
-/*}*/
+
 /*.cards {*/
 /*    margin: auto;*/
 /*    display: block;*/
